@@ -7,7 +7,7 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("Usage: ffp <target_file>")
+		fmt.Fprintln(os.Stderr, "Usage: ffp <target_file>")
 		os.Exit(1)
 	}
 
@@ -15,14 +15,14 @@ func main() {
 	wd, getwdErr := os.Getwd()
 
 	if getwdErr != nil {
-		fmt.Println(getwdErr)
+		fmt.Fprintln(os.Stderr, getwdErr)
 		os.Exit(1)
 	}
 
 	var fileFullpath string = wd + "/" + file
 
 	if _, err := os.Stat(fileFullpath); err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
